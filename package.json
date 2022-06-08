@@ -1,0 +1,26 @@
+{
+  "name": "rynyk",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000R\u0000y\u0000n\u0000y\u0000k\u0000\r\u0000 \u0000",
+  "main": "src/index.js",
+  "scripts": {
+    "commands": "node src/deploy-commands.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srtager555/Rynyk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srtager555/Rynyk/issues"
+  },
+  "homepage": "https://github.com/srtager555/Rynyk#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.15.0",
+    "@discordjs/rest": "^0.5.0",
+    "discord-api-types": "^0.33.5",
+    "discord.js": "^13.8.0"
+  }
+}
