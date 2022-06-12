@@ -7,6 +7,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 // When the client is ready, run this code (only once)
 client.once("ready", () => {
+   console.log("XD");
    console.log("Ready!");
 });
 
