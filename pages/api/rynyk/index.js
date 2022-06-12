@@ -1,8 +1,10 @@
-import discordApp from '../../../src/index.js';
+const discordApp = require ('../../../src/index.js');
+const app = require('express')();
 
-export default function rynyk(req, res) {
-    res.statusCode = 200;
-    discordApp(); // Run the discordApp function
+app.get('/api/rynyk', (req, res) => {
+    discordApp();
+    res.send('Rynyk time!!');
+});
 
-    return ('hola?');
-}
+module.exports = app;
+
