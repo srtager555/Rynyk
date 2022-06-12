@@ -1,10 +1,5 @@
-const discordApp = require ('../../../src/index.js');
-const app = require('express')();
+import discordApp from "../../../src/index.js";
 
-app.get('/api/rynyk', (req, res) => {
-    discordApp();
-    res.send('Rynyk time!!');
-});
-
-module.exports = app;
-
+export default function app() {
+   discordApp();
+}
