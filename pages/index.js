@@ -2,10 +2,9 @@ import { useEffect } from "react";
 import discordApp from "../src/index";
 
 export default function app() {
+   useEffect(() => {
+      discordApp();
+   }, []);
 
-    useEffect(() => {
-        discordApp();
-    },[]);
-
-    return ('XD');
+   return "XD";
 }
