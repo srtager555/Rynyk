@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "commands": "node src/deploy-commands.js",
-    "start:server": "node src/index.js"
+    "run:bot": "node src/index.js"
   },
   "repository": {
     "type": "git",
