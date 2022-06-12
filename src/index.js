@@ -1,31 +1,14 @@
-require('dotenv').config()
-// Require the necessary discord.js classes
-const { Client, Intents } = require('discord.js');
+const express = require("express");
 
+const app = express();
 
-module.exports = function discordApp() {
-	// Create a new client instance
-	const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-	
-	// When the client is ready, run this code (only once)
-	client.once('ready', () => {
-		console.log('Ready!');
-	});
-	
-	client.on('interactionCreate', async interaction => {
-		if (!interaction.isCommand()) return;
-	
-		const { commandName } = interaction;
-	
-		if (commandName === 'ping') {
-			await interaction.reply('Pong!');
-		} else if (commandName === 'server') {
-			await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
-		} else if (commandName === 'user') {
-			await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
-		}
-	});
-	
-	// Login to Discord with your client's TOKEN
-	client.login(process.env.TOKEN);
-}
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
+
+app.listen(5000, () => {
+  console.log("Running on port 5000.");
+});
+
+// Export the Express API
+module.exports = app;
