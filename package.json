@@ -4,7 +4,8 @@
   "description": "��#\u0000 \u0000R\u0000y\u0000n\u0000y\u0000k\u0000\r\u0000 \u0000",
   "main": "src/index.js",
   "scripts": {
-    "commands": "node src/deploy-commands.js"
+    "commands": "node src/deploy-commands.js",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
