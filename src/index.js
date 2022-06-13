@@ -26,6 +26,10 @@ client.on("interactionCreate", async (interaction) => {
       await interaction.reply(
          `Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`
       );
+   } else if (commandName === "xd") {
+      await interaction.reply(
+         "Caballeros, Ttager logro ponerme en linea :D pero no como el lo esperaba Xdxdxdxdxdxdxdx"
+         );
    }
 });
 

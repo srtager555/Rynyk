@@ -4,12 +4,8 @@
   "description": "��#\u0000 \u0000R\u0000y\u0000n\u0000y\u0000k\u0000\r\u0000 \u0000",
   "main": "src/index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
     "commands": "node src/deploy-commands.js",
-    "run:bot": "node src/index.js"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
