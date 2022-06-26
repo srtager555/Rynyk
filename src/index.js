@@ -31,18 +31,22 @@ client.on("interactionCreate", async (interaction) => {
          content: "Tengo la capacidad para reaccionar al chat",
          fetchReply: true,
       });
-      message.react("👁️");
-      message.react('<:avueno:981575496578007101>')
+      message
+         .react("👁️")
+         .then(() => message.react("<:avueno:981575496578007101>"))
+			.catch(error => console.error('One of the emojis failed to react:', error));
    }
-
-   // if (commandName === "ping") {
-   //    await interaction.reply("Pong!");
-   // } else if (commandName === "server") {
-   //    await interaction.reply(
-   //       `Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`
-   //    );
-   // }
 });
+
+client.on('messageCreate', async (message) => {
+
+      console.log(message.content.length)
+      let messageLength = message.content.length;
+      message.channel.send(`el largo de este mensaje es:  ${messageLength.toString()}`).catch((error) => {
+         console.log(message.content)
+         console.log(error)
+      })
+})
 
 // Login to Discord with your client's TOKEN
 client.login(process.env.TOKEN);
