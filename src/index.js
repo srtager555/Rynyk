@@ -17,7 +17,6 @@ client.once("ready", () => {
    console.log("Ready!");
 });
 
-
 //Simple slash commands
 client.on("interactionCreate", async (interaction) => {
    if (!interaction.isCommand()) return;
@@ -56,15 +55,18 @@ client.on("messageCreate", async (message) => {
    let messageLength = message.content.length;
 
    message.channel
-      .send(`autor: ${message.author}`)
+      .send(`Author: ${message.author}`)
+      .then(() =>
+         message.channel.send(`message length: ${messageLength.toString()}`)
+      )
       .then(() =>
          message.channel.send(
-            `el largo de este mensaje es:  ${messageLength.toString()}`
+            `The message has ${message.content
+               .split(/\s/)
+               .length.toString()} words`
          )
       )
-      .then(() =>
-         message.channel.send(`ID del canal: ${message.channelId.toString()}`)
-      )
+      .then(() => message.channel.send(message.createdAt.toString()))
       .catch((error) => {
          console.error(message.content);
          console.error(error);
