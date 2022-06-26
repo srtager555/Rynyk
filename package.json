@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "commands": "node src/deploy-commands.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "newStart": "npm run commands && npm start"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
     "discord.js": "^13.8.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }
