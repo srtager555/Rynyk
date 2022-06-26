@@ -17,6 +17,8 @@ client.once("ready", () => {
    console.log("Ready!");
 });
 
+
+//Simple slash commands
 client.on("interactionCreate", async (interaction) => {
    if (!interaction.isCommand()) return;
 
@@ -34,19 +36,40 @@ client.on("interactionCreate", async (interaction) => {
       message
          .react("👁️")
          .then(() => message.react("<:avueno:981575496578007101>"))
-			.catch(error => console.error('One of the emojis failed to react:', error));
+         .catch((error) =>
+            console.error("One of the emojis failed to react:", error)
+         );
    }
 });
 
-client.on('messageCreate', async (message) => {
+client.on("messageCreate", async (message) => {
+   if (message.channelId != "983907949342752818") return;
 
-      console.log(message.content.length)
-      let messageLength = message.content.length;
-      message.channel.send(`el largo de este mensaje es:  ${messageLength.toString()}`).catch((error) => {
-         console.log(message.content)
-         console.log(error)
-      })
-})
+   if (
+      message.author.bot ||
+      message.author.id === "980742967365074974" ||
+      message.author.id === "985599021693427832"
+   ) {
+      return;
+   }
+
+   let messageLength = message.content.length;
+
+   message.channel
+      .send(`autor: ${message.author}`)
+      .then(() =>
+         message.channel.send(
+            `el largo de este mensaje es:  ${messageLength.toString()}`
+         )
+      )
+      .then(() =>
+         message.channel.send(`ID del canal: ${message.channelId.toString()}`)
+      )
+      .catch((error) => {
+         console.error(message.content);
+         console.error(error);
+      });
+});
 
 // Login to Discord with your client's TOKEN
 client.login(process.env.TOKEN);
