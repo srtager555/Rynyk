@@ -3,7 +3,13 @@ require("dotenv").config();
 const { Client, Intents } = require("discord.js");
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+   intents: [
+      Intents.FLAGS.GUILDS,
+      Intents.FLAGS.GUILD_MESSAGES,
+      Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+   ],
+});
 
 // When the client is ready, run this code (only once)
 client.once("ready", () => {
@@ -16,21 +22,26 @@ client.on("interactionCreate", async (interaction) => {
 
    const { commandName } = interaction;
 
-   if (commandName === "ping") {
-      await interaction.reply("Pong!");
-   } else if (commandName === "server") {
-      await interaction.reply(
-         `Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`
-      );
-   } else if (commandName === "user") {
-      await interaction.reply(
-         `Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`
-      );
-   } else if (commandName === "xd") {
-      await interaction.reply(
-         "Caballeros, Ttager logro ponerme en linea :D pero no como el lo esperaba Xdxdxdxdxdxdxdx"
-         );
+   if (commandName === "worktime") {
+      await interaction.reply("Time to work!");
    }
+
+   if (commandName === "reaction") {
+      const message = await interaction.reply({
+         content: "Tengo la capacidad para reaccionar al chat",
+         fetchReply: true,
+      });
+      message.react("👁️");
+      message.react('<:avueno:981575496578007101>')
+   }
+
+   // if (commandName === "ping") {
+   //    await interaction.reply("Pong!");
+   // } else if (commandName === "server") {
+   //    await interaction.reply(
+   //       `Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`
+   //    );
+   // }
 });
 
 // Login to Discord with your client's TOKEN
