@@ -13,7 +13,6 @@ const client = new Client({
 
 // When the client is ready, run this code (only once)
 client.once("ready", () => {
-   console.log("XD");
    console.log("Ready!");
 });
 
@@ -41,36 +40,45 @@ client.on("interactionCreate", async (interaction) => {
    }
 });
 
-client.on("messageCreate", async (message) => {
-   if (message.channelId != "983907949342752818") return;
+// system on spam control (beta)
+
+client.on("messageCreate", (message) => {
+   const testChannel = "983907949342752818";
 
    if (
       message.author.bot ||
       message.author.id === "980742967365074974" ||
-      message.author.id === "985599021693427832"
+      message.author.id === "985599021693427832" 
+      // || message.channelId != testChannel
    ) {
       return;
    }
 
    let messageLength = message.content.length;
 
-   message.channel
-      .send(`Author: ${message.author}`)
-      .then(() =>
-         message.channel.send(`message length: ${messageLength.toString()}`)
-      )
-      .then(() =>
-         message.channel.send(
-            `The message has ${message.content
+   message
+      .react("👁️")
+      .then(() => setTimeout(() => message.reactions.removeAll(), 3000));
+
+   client.channels.fetch(testChannel).then((channel) =>
+      channel
+         .send(
+            `
+            Author: ${message.author}
+            channel: #${message.channel.name}
+            message content: ${message.content}
+            message length: ${messageLength.toString()}
+            The message has ${message.content
                .split(/\s/)
-               .length.toString()} words`
+               .length.toString()} words
+            ${message.createdAt.toString()}
+         `
          )
-      )
-      .then(() => message.channel.send(message.createdAt.toString()))
-      .catch((error) => {
-         console.error(message.content);
-         console.error(error);
-      });
+         .catch((error) => {
+            console.error(message.content);
+            console.error(error);
+         })
+   );
 });
 
 // Login to Discord with your client's TOKEN
