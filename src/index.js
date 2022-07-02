@@ -56,9 +56,9 @@ client.on("messageCreate", (message) => {
 
    let messageLength = message.content.length;
 
-   message
-      .react("👁️")
-      .then(() => setTimeout(() => message.reactions.removeAll(), 3000));
+   // message
+   //    .react("👁️")
+   //    .then(() => setTimeout(() => message.reactions.removeAll(), 3000));
 
    client.channels.fetch(testChannel).then((channel) =>
       channel
