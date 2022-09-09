@@ -12,6 +12,7 @@ const commands = [
       .setName("worktime")
       .setDescription("Time to work!!!"),
    new SlashCommandBuilder().setName("reaction").setDescription("I see you."),
+   new SlashCommandBuilder().setName("start-antispam").setDescription("I will create a channels list for work on the spam"),
 ].map((command) => command.toJSON());
 
 const rest = new REST({ version: "9" }).setToken(TOKEN);
