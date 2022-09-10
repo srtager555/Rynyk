@@ -1,25 +1,35 @@
 const dotenv = require("dotenv").config();
-const { SlashCommandBuilder } = require("@discordjs/builders");
-const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v9");
+const { REST, Routes } = require('discord.js');
 
 const TOKEN = process.env.TOKEN;
 const GUILD_ID = process.env.GUILD_ID;
 const CLIENT_ID = process.env.CLIENT_ID;
 
 const commands = [
-   new SlashCommandBuilder()
-      .setName("worktime")
-      .setDescription("Time to work!!!"),
-   new SlashCommandBuilder().setName("reaction").setDescription("I see you."),
-   new SlashCommandBuilder().setName("start-antispam").setDescription("I will create a channels list for work on the spam"),
-].map((command) => command.toJSON());
+   {
+      name:"worktime",
+      description: "Time to work!!!"
+   },
+   {
+      name: "reaction",
+      description: "I see you."
+   },
+   {
+      name: "start-antispam",
+      description: "I will create a channels list for work on the spam"
+   },
+]
 
-const rest = new REST({ version: "9" }).setToken(TOKEN);
+const rest = new REST({ version: "10" }).setToken(TOKEN);
 
-rest
-   .put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), {
-      body: commands,
-   })
-   .then(() => console.log("Successfully registered application commands."))
-   .catch(console.error);
+(async () => {
+   try {
+      console.log('I starting to refresh the slash commands')
+
+      await rest.put(Routes.applicationCommands(CLIENT_ID), { body: commands });
+      
+      console.log('I updated the slash commands')
+   } catch (error) {
+      console.log(error)
+   }
+})()
