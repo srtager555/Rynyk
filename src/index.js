@@ -1,15 +1,11 @@
 require("dotenv").config();
 // Require the necessary discord.js classes
-const { Client, Intents } = require("discord.js");
+const { Client, GatewayIntentBits } = require('discord.js');
+
+import { start_antispam } from "./commands/start-antispam.command";
 
 // Create a new client instance
-const client = new Client({
-   intents: [
-      Intents.FLAGS.GUILDS,
-      Intents.FLAGS.GUILD_MESSAGES,
-      Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-   ],
-});
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 // When the client is ready, run this code (only once)
 client.once("ready", () => {
@@ -18,13 +14,15 @@ client.once("ready", () => {
 
 //Simple slash commands
 client.on("interactionCreate", async (interaction) => {
-   if (!interaction.isCommand()) return;
+   if (!interaction.isChatInputCommand()) return;
 
    const { commandName } = interaction;
 
    if (commandName === "worktime") {
       await interaction.reply("Time to work!");
    }
+
+   if (commandName === "start-antispam") start_antispam({client, interaction})
 
    if (commandName === "reaction") {
       const message = await interaction.reply({
@@ -55,10 +53,6 @@ client.on("messageCreate", (message) => {
    }
 
    let messageLength = message.content.length;
-
-   // message
-   //    .react("👁️")
-   //    .then(() => setTimeout(() => message.reactions.removeAll(), 3000));
 
    client.channels.fetch(testChannel).then((channel) =>
       channel
