@@ -22,7 +22,11 @@
   "homepage": "https://github.com/srtager555/Rynyk#readme",
   "dependencies": {
     "discord.js": "^14.3.0",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
