@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "commands": "node src/deploy-commands.js",
-    "start": "node src/index.js",
+    "start": "npm run commands &&  node src/index.js",
     "newStart": "npm run commands && npm start",
     "nodemon": "node src/index.js"
   },
