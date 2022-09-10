@@ -2,8 +2,7 @@ require("dotenv").config();
 // Require the necessary discord.js classes
 const { Client, GatewayIntentBits } = require('discord.js');
 
-import { start_antispam } from "./commands/start-antispam.command";
-
+const { start_antispam } = require("./commands/start-antispam.command");
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -22,7 +21,12 @@ client.on("interactionCreate", async (interaction) => {
       await interaction.reply("Time to work!");
    }
 
-   if (commandName === "start-antispam") start_antispam({client, interaction})
+   if (commandName === "start-antispam") 
+      try {
+         await start_antispam({ client, interaction})
+      } catch (error) { 
+         await interaction.reply(`error: ${error}`)
+      }
 
    if (commandName === "reaction") {
       const message = await interaction.reply({
