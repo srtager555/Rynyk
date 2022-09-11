@@ -2,8 +2,9 @@ async function start_antispam({ client, interaction }) {
   try {
     let channelList;
     const data = client.guilds.cache;
-    const channelManager = data.entries().next().value[1].channels;
-    await channelManager.fetch().then(
+    const channelManager = data.get(interaction.guildId).channels;
+
+    await channelManager.fetch(interaction.guildId).then(
       (channels) =>
         (channelList = channels.map((value, key) => {
           return `channel: ${value.name}, id: ${key}`;
