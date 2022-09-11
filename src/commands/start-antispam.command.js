@@ -1,21 +1,18 @@
 async function start_antispam({ client, interaction }) {
   try {
-    let channelList;
     const data = client.guilds.cache;
     const channelManager = data.get(interaction.guildId).channels;
 
-    await channelManager.fetch().then(
-      (channels) =>
-        (channelList = channels.map((value, key) => {
-          return `channel: ${value.name}, id: ${key}`;
-        }))
+    const namesChannels = await channelManager
+      .fetch()
+      .then((channels) => channels.map((value) => value.name));
+
+    const hasRynykLog = namesChannels.some((el) => el === "rynyk-logs");
+    const hasRynykNews = namesChannels.some((el) => el === "rynyk-news");
+
+    await interaction.reply(
+      `rynyk-logs: ${hasRynykLog}, rynyk-news: ${hasRynykNews}`
     );
-
-    let channelListReduce = channelList.slice(0, 11);
-
-    await interaction.reply(`Comenzando la inicialización:
-= mostrando lista de canales:
-${channelListReduce.join("\n")} \n ...`);
   } catch (error) {
     await interaction.reply(`
       Has been a error:
