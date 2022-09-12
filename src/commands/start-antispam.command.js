@@ -1,7 +1,6 @@
-async function start_antispam({ client, interaction }) {
+async function start_antispam({ interaction }) {
   try {
-    const data = client.guilds.cache;
-    const channelManager = data.get(interaction.guildId).channels;
+    const channelManager = interaction.guild.channels;
 
     const namesChannels = await channelManager
       .fetch()
