@@ -2,11 +2,10 @@
 require("dotenv").config();
 // Require the necessary discord.js classes
 const { Client, GatewayIntentBits } = require("discord.js");
-const { __interaction__slash_commands__ } = require("./commands");
-
 const {
-  start_antispam,
-} = require("./commands/slash--commands/start-antispam.command");
+  __interaction__slash_commands__,
+} = require("./commands/slash--commands");
+
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -18,34 +17,8 @@ client.once("ready", () => {
 
 //Simple slash commands
 client.on("interactionCreate", async (interaction) => {
-  const { commandName } = interaction;
-
   if (interaction.isChatInputCommand()) {
     __interaction__slash_commands__(interaction);
-  }
-
-  if (commandName === "worktime") {
-    await interaction.reply("Time to work!");
-  }
-
-  if (commandName === "start-antispam")
-    try {
-      await start_antispam({ client, interaction });
-    } catch (error) {
-      await interaction.reply(`error: ${error}`);
-    }
-
-  if (commandName === "reaction") {
-    const message = await interaction.reply({
-      content: "Tengo la capacidad para reaccionar al chat",
-      fetchReply: true,
-    });
-    message
-      .react("👁️")
-      .then(() => message.react("<:avueno:981575496578007101>"))
-      .catch((error) =>
-        console.error("One of the emojis failed to react:", error)
-      );
   }
 });
 
