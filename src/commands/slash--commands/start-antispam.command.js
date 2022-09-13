@@ -9,6 +9,24 @@ async function start_antispam({ interaction }) {
     const hasRynykLog = namesChannels.some((el) => el === "rynyk-logs");
     const hasRynykNews = namesChannels.some((el) => el === "rynyk-news");
 
+    if (!hasRynykNews || !hasRynykNews) {
+      await interaction.reply({
+        content: "WARNING",
+        components: [
+          {
+            type: 1,
+            components: [
+              {
+                type: 2,
+                label: "Click me!",
+                style: 1,
+                custom_id: "click_one",
+              },
+            ],
+          },
+        ],
+      });
+    }
     await interaction.reply(
       `rynyk-logs: ${hasRynykLog}, rynyk-news: ${hasRynykNews}`
     );
