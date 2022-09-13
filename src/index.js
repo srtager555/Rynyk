@@ -1,35 +1,31 @@
+/* eslint-disable no-console */
 require("dotenv").config();
 // Require the necessary discord.js classes
 const { Client, GatewayIntentBits } = require("discord.js");
+const { __interaction__slash_commands__ } = require("./commands");
 
-const { start_antispam } = require("./commands/start-antispam.command");
+const {
+  start_antispam,
+} = require("./commands/slash--commands/start-antispam.command");
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 // When the client is ready, run this code (only once)
 client.once("ready", () => {
+  // eslint-disable-next-line no-console
   console.log("Ready!");
 });
 
 //Simple slash commands
 client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-
   const { commandName } = interaction;
+
+  if (interaction.isChatInputCommand()) {
+    __interaction__slash_commands__(interaction);
+  }
 
   if (commandName === "worktime") {
     await interaction.reply("Time to work!");
-  }
-
-  if (commandName === "ping") {
-    let time = 0;
-    let timer = setInterval(() => time++, 1);
-
-    await interaction.guild.channels.fetch();
-
-    clearInterval(timer);
-
-    await interaction.reply(`${time}ms`);
   }
 
   if (commandName === "start-antispam")
