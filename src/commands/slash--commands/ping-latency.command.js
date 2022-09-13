@@ -5,7 +5,7 @@ const __slash_command__ping_latency__ = new GlobalCommand({
   functionToRun: __slash_command__ping_latency__function,
 });
 
-async function __slash_command__ping_latency__function(interaction) {
+async function __slash_command__ping_latency__function({ interaction }) {
   let time = 0;
   let timer = setInterval(() => time++, 1);
 
