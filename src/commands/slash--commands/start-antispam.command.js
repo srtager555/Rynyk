@@ -1,3 +1,10 @@
+const { GlobalCommand } = require("../GlobalCommand");
+
+const __slash_command__start_antispam__ = new GlobalCommand({
+  name: "start-antispam",
+  functionToRun: start_antispam,
+});
+
 async function start_antispam({ interaction }) {
   try {
     const channelManager = interaction.guild.channels;
@@ -26,6 +33,7 @@ async function start_antispam({ interaction }) {
           },
         ],
       });
+      return;
     }
     await interaction.reply(
       `rynyk-logs: ${hasRynykLog}, rynyk-news: ${hasRynykNews}`
@@ -38,4 +46,4 @@ async function start_antispam({ interaction }) {
   }
 }
 
-module.exports = { start_antispam };
+module.exports = { __slash_command__start_antispam__ };
