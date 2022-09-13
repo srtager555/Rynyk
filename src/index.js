@@ -21,6 +21,17 @@ client.on("interactionCreate", async (interaction) => {
     await interaction.reply("Time to work!");
   }
 
+  if (commandName === "ping") {
+    let time = 0;
+    let timer = setInterval(() => time++, 1);
+
+    await interaction.guild.channels.fetch();
+
+    clearInterval(timer);
+
+    await interaction.reply(`${time}ms`);
+  }
+
   if (commandName === "start-antispam")
     try {
       await start_antispam({ client, interaction });
