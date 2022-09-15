@@ -6,10 +6,17 @@
 
 // A prototype of function hall.
 function __main_function_hall__({ interaction, arrCommands }) {
-  const { commandName } = interaction;
+  let whichCommandIs;
 
   // here the code'll filter the correct command
-  const whichCommandIs = arrCommands.filter((el) => el.name === commandName);
+  if (interaction.isButton())
+    whichCommandIs = arrCommands.filter(
+      (el) => el.name === interaction.custom_id
+    );
+  else
+    whichCommandIs = arrCommands.filter(
+      (el) => el.name === interaction.commandName
+    );
 
   // run the function of this command
   whichCommandIs[0].functionToRun({ interaction });
