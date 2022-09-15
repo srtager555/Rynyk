@@ -11,7 +11,7 @@ function __main_function_hall__({ interaction, arrCommands }) {
   // here the code'll filter the correct command
   if (interaction.isButton())
     whichCommandIs = arrCommands.filter(
-      (el) => el.name === interaction.custom_id
+      (el) => el.name === interaction.customId
     );
   else
     whichCommandIs = arrCommands.filter(
