@@ -5,6 +5,9 @@ const { Client, GatewayIntentBits } = require("discord.js");
 const {
   __interaction__slash_commands__,
 } = require("./commands/slash--commands");
+const {
+  __interaction__command_button__,
+} = require("./commands/button--commands");
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -19,6 +22,10 @@ client.once("ready", () => {
 client.on("interactionCreate", async (interaction) => {
   if (interaction.isChatInputCommand()) {
     __interaction__slash_commands__(interaction);
+  }
+
+  if (interaction.isButton()) {
+    __interaction__command_button__(interaction);
   }
 });
 
