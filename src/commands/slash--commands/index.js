@@ -12,7 +12,7 @@ function __interaction__slash_commands__(interaction) {
     __slash_command__start_antispam__,
   ];
 
-  __main_function_hall__({ interaction, slashCommands });
+  __main_function_hall__({ interaction, arrCommands: slashCommands });
 }
 
 module.exports = { __interaction__slash_commands__ };
