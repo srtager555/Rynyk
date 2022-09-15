@@ -27,7 +27,7 @@ async function start_antispam({ interaction }) {
                 type: 2,
                 label: "Click me!",
                 style: 1,
-                custom_id: "click_one",
+                custom_id: "button--test",
               },
             ],
           },
