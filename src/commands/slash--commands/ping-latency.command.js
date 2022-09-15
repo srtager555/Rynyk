@@ -1,6 +1,6 @@
-const { GlobalCommand } = require("../GlobalCommand");
+const { __prototype_command_base__ } = require("../Command--base.prototype");
 
-const __slash_command__ping_latency__ = new GlobalCommand({
+const __slash_command__ping_latency__ = new __prototype_command_base__({
   name: "ping",
   functionToRun: __slash_command__ping_latency__function,
 });

@@ -1,6 +1,6 @@
-const { GlobalCommand } = require("../GlobalCommand");
+const { __prototype_command_base__ } = require("../Command--base.prototype");
 
-const __slash_command__start_antispam__ = new GlobalCommand({
+const __slash_command__start_antispam__ = new __prototype_command_base__({
   name: "start-antispam",
   functionToRun: start_antispam,
 });
